@@ -1,0 +1,4 @@
+rootProject.name = 'csb-core-provider'
+include 'csb-upms'
+
+include 'csb-core-common'
