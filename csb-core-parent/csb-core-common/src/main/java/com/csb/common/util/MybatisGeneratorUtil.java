@@ -20,15 +20,15 @@ import java.util.Map;
 public class MybatisGeneratorUtil {
 
 	// 模板路径
-	private static String VM_PATH = "csb-common/src/main/resources/template/generatorConfig.vm";
+	private static String VM_PATH = "csb-core-common/src/main/resources/template/generatorConfig.vm";
 	//Service模板路径
-	private static String SERVICE_VM_PATH = "csb-common/src/main/resources/template/Service.vm";
+	private static String SERVICE_VM_PATH = "csb-core-common/src/main/resources/template/Service.vm";
 	// ServiceMock模板路径
-	private static String SERVICEIMPL_VM_PATH = "csb-common/src/main/resources/template/ServiceImpl.vm";
+	private static String SERVICEIMPL_VM_PATH = "csb-core-common/src/main/resources/template/ServiceImpl.vm";
 	// ServiceImpl模板路径
-	private static String SERVICEMOCK_VM_PATH = "csb-common/src/main/resources/template/ServiceMock.vm";
+	private static String SERVICEMOCK_VM_PATH = "csb-core-common/src/main/resources/template/ServiceMock.vm";
 	//服务启动调试类模版路径
-	private static String START_SERVICE_VM_PATH = "csb-common/src/main/resources/template/StartServiceApplication.vm";
+	private static String START_SERVICE_VM_PATH = "csb-core-common/src/main/resources/template/StartServiceApplication.vm";
 
 	/**
 	 * 根据模板生成generatorConfig.xml文件
@@ -66,7 +66,7 @@ public class MybatisGeneratorUtil {
 			}
 			jdbcUtil.release();
 
-			String modelProject = project_name + "-" + module_prefix_name.replaceAll("\\.", "-") + "/" + project_name + "-" + module_prefix_name.replaceAll("\\.", "-") + "-dao";
+			String modelProject = project_name + "-" + module_prefix_name;
 			context.put("tables", tables);
 			context.put("generator_javaTypeResolver_targetPackage","");
 			context.put("generator_javaModelGenerator_targetPackage", "com." + project_name + "." + module_prefix_name + ".dao.model");
@@ -132,17 +132,14 @@ public class MybatisGeneratorUtil {
 		try{
 			String ctime = DateUtil.getCurrDateTime();
 
-			String servicePath = project_name + "-" + module_prefix_name.replaceAll("\\.", "-") + "/"
-					+ project_name + "-" + module_prefix_name.replaceAll("\\.", "-") + "-rpc-api"
-					+ "/src/main/java/com/" + project_name + "/" + module_prefix_name.replaceAll("\\.", "/") + "/rpc/api";
+			String servicePath = project_name + "-" + module_prefix_name.replaceAll("\\.", "-")
+					+ "/src/main/java/com/" + project_name + "/" + module_prefix_name.replaceAll("\\.", "/") + "/api";
 
-			String serviceImplPath = project_name + "-" + module_prefix_name.replaceAll("\\.", "-") + "/"
-					+ project_name + "-" + module_prefix_name.replaceAll("\\.", "-") + "-rpc-service"
-					+ "/src/main/java/com/" + project_name + "/" + module_prefix_name.replaceAll("\\.", "/") + "/rpc/service/impl";
+			String serviceImplPath = project_name + "-" + module_prefix_name.replaceAll("\\.", "-")
+					+ "/src/main/java/com/" + project_name + "/" + module_prefix_name.replaceAll("\\.", "/") + "/service/impl";
 
-			String startServicePath = project_name + "-" + module_prefix_name.replaceAll("\\.", "-") + "/"
-					+ project_name + "-" + module_prefix_name.replaceAll("\\.", "-") + "-rpc-service"
-					+ "/src/main/java/com/" + project_name + "/" + module_prefix_name.replaceAll("\\.", "/") + "/rpc/service";
+			String startServicePath = project_name + "-" + module_prefix_name.replaceAll("\\.", "-")
+					+ "/src/main/java/com/" + project_name + "/" + module_prefix_name.replaceAll("\\.", "/") + "/service";
 
 			for (int i = 0; i < tables.size(); i++) {
 				String model = StringUtil.lineToHump(ObjectUtils.toString(tables.get(i).get("table_name")).replaceAll(table_prfix_name,""));
