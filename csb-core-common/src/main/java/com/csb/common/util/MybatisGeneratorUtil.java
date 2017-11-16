@@ -146,7 +146,7 @@ public class MybatisGeneratorUtil {
 				String service = servicePath + "/" + model + "Service.java";
 				String serviceMock = servicePath + "/" + model + "ServiceMock.java";
 				String serviceImpl = serviceImplPath + "/" + model + "ServiceImpl.java";
-				String startService = startServicePath + "/CSB" + StringUtil.toUpperCaseFirstOne(module_prefix_name) + "RpcServiceApplication.java";
+//				String startService = startServicePath + "/CSB" + StringUtil.toUpperCaseFirstOne(module_prefix_name) + "RpcServiceApplication.java";
 
 				// 生成service
 				File serviceFile = new File(service);
@@ -187,16 +187,16 @@ public class MybatisGeneratorUtil {
 				}
 
 				// 生成startService
-				File startServiceFile = new File(startService);
-				if (!startServiceFile.exists()) {
-					VelocityContext context = new VelocityContext();
-					context.put("groupId", "com." + project_name);
-					context.put("module", module_prefix_name.replaceAll("\\.", "/"));
-					context.put("model", model);
-					context.put("ctime", ctime);
-					VelocityUtil.generate(START_SERVICE_VM_PATH, startService, context);
-					System.out.println(startService);
-				}
+//				File startServiceFile = new File(startService);
+//				if (!startServiceFile.exists()) {
+//					VelocityContext context = new VelocityContext();
+//					context.put("groupId", "com." + project_name);
+//					context.put("module", module_prefix_name.replaceAll("\\.", "/"));
+//					context.put("model", model);
+//					context.put("ctime", ctime);
+//					VelocityUtil.generate(START_SERVICE_VM_PATH, startService, context);
+//					System.out.println(startService);
+//				}
 			}
 		}catch (Exception e){
 			System.out.println("========== 生成Service,ServiceImpl,ServiceMock 失败 ==========");
